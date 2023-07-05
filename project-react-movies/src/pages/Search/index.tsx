@@ -1,5 +1,36 @@
+import { useState, useEffect } from "react"
+import { useSearchParams } from "react-router-dom"
+import { MovieCards } from "../MovieCards"
+
+const URL_SEARCH = import.meta.env.VITE_SEARCH;
+const API_KEY = import.meta.env.VITE_API_KEY;
+
 export function Search() {
+    const [searchParams] = useSearchParams();
+    const [movies, setMovie] = useState([])
+    const query = searchParams.get('q')
+
+    const handleFetch = async (url:string) => {
+        const response = await fetch(url);
+        const data = await response.json();
+        setMovie(data.results);
+       }
+    
+       useEffect(() => {
+        const urlSearch = `${URL_SEARCH}?${API_KEY}&query=${query}`;
+        handleFetch(urlSearch);
+        },[query])
+
+        
+        
     return (
-        <h1>Search</h1>
+        <div>
+        <h2>Resultados para: {query}</h2>
+        <div>
+            {movies.length > 0 && movies.map((movie) => (
+                <MovieCards movie={movie} key={movie.id}/>
+            ))}
+        </div>
+     </div>
     )
 }
