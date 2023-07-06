@@ -3,7 +3,19 @@ import { FaStar } from 'react-icons/fa'
 
 const urlImg = import.meta.env.VITE_IMG;
 
-export function MovieCards ({movie, showLink = true}) {
+export type MovieCardsProps = {
+    movie: {
+        id: number;
+        title: string;
+        poster_path: string;
+        vote_average: number
+    }
+    showLink: boolean;
+    key: number;
+}
+
+
+export function MovieCards ({movie, showLink = true}: MovieCardsProps) {
     
     return (
         <div>
