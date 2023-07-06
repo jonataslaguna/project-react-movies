@@ -46,7 +46,7 @@ export function Movie() {
     }, [id])
    
     return (
-        <div className="movie-page">
+        <div>
           {movie && (
             <>
               <MovieCards movie={movie} showLink={false} key={movie.id } />

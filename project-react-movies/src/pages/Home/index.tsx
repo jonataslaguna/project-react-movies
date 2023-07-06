@@ -4,8 +4,24 @@ import { MovieCards } from "../../components/MovieCards";
 const API_URL = import.meta.env.VITE_API;
 const KEY = import.meta.env.VITE_API_KEY;
 
+ const INITIAL_STATE = [
+  {
+  title:'',
+  adult: false,
+  backdrop_path: '',
+  genre_ids: [],
+  id: 0,
+  original_language: '',
+  original_title: '',
+  overview: '',
+  poster_path:'',
+  vote_average: 0,
+  }
+];
+
+
 export function Home() {
-   const [movies, setMovies] = useState([]);
+   const [movies, setMovies] = useState(INITIAL_STATE);
 
    const handleFetch = async (url:string) => {
     const response = await fetch(url);
